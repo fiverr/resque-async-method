@@ -9,6 +9,5 @@ module Resque
   end
 end
 
-ActiveSupport.on_load(:active_record) do
-  include Resque::Plugins::Async::Method
-end
+autoload :ActiveRecord, 'active_record'
+include Resque::Plugins::Async::Method
