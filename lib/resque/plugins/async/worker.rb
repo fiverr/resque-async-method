@@ -14,10 +14,10 @@ class Resque::Plugins::Async::Worker
     arguments = *args.map { |o| o.is_a?(Hash) && o.has_key?("class_name") && o.has_key?("id") ? o["class_name"].constantize.find(o["id"]) : o }
     if id == 0
       #class method
-      klass.constantize.send(args.shift, arguments)
+      klass.constantize.send(arguments.shift, *arguments)
     else
       #instance method
-      klass.constantize.find(id).send(args.shift, arguments)
+      klass.constantize.find(id).send(arguments.shift, *arguments)
     end
   end
 end
