@@ -16,6 +16,15 @@ module Resque::Plugins::Async::Method
     end
     clean_method = method.to_s.gsub("!","")
     method_without_enqueue = "#{clean_method}_without_enqueue#{'!' if clean_method != method.to_s}"
+    
+    *args = *args.map do |object|
+      if object.is_a?(ActiveRecord::Base)
+        {:class_name => object.class.name, :id => object.id}
+      else
+        object
+      end
+    end
+
     Resque.enqueue(
       my_klass,
       send(:class).name == "Class" ? send(:name) : send(:class).name,
