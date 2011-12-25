@@ -10,6 +10,13 @@ class Resque::Plugins::Async::Worker
   end
   
   def self.perform(klass, *args)
-    klass.constantize.find(args.shift).send(args.shift, *args)
+    id = args.shift
+    if id == 0
+      #class method
+      klass.constantize.send(args.shift, *args)
+    else
+      #instance method
+      klass.constantize.find(id).send(args.shift, *args)
+    end
   end
 end
