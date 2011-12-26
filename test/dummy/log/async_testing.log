@@ -26,3 +26,63 @@
   [1m[35mFixture Insert (1.0ms)[0m  INSERT INTO "users" ("name", "email", "born_on", "locked_at", "created_at", "updated_at", "id") VALUES ('John Doe', 'john.doe@johndoe.com', '1984-09-17', '2011-06-13 22:01:13.000000', '2011-06-14 20:26:41', '2011-06-14 20:26:41', 980190962)
   [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" LIMIT 1[0m
   [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 980190962]]
+  [1m[36mFixture Delete (25.6ms)[0m  [1mDELETE FROM "users"[0m
+  [1m[35mFixture Insert (0.1ms)[0m  INSERT INTO "users" ("name", "created_at", "updated_at", "id", "locked_at", "born_on", "email") VALUES ('John Doe', '2011-12-26 07:59:46', '2011-12-26 07:59:46', 980190962, '2011-06-13 22:01:13', '1984-09-17', 'john.doe@johndoe.com')
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT "users".* FROM "users" LIMIT 1[0m
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 980190962]]
+  [1m[36mFixture Delete (0.2ms)[0m  [1mDELETE FROM "users"[0m
+  [1m[35mFixture Insert (0.1ms)[0m  INSERT INTO "users" ("name", "created_at", "updated_at", "id", "locked_at", "born_on", "email") VALUES ('John Doe', '2011-12-26 08:16:34', '2011-12-26 08:16:34', 980190962, '2011-06-13 22:01:13', '1984-09-17', 'john.doe@johndoe.com')
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" LIMIT 1[0m
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 980190962]]
+  [1m[36mFixture Delete (0.2ms)[0m  [1mDELETE FROM "users"[0m
+  [1m[35mFixture Insert (0.1ms)[0m  INSERT INTO "users" ("name", "created_at", "updated_at", "id", "locked_at", "born_on", "email") VALUES ('John Doe', '2011-12-26 08:21:50', '2011-12-26 08:21:50', 980190962, '2011-06-13 22:01:13', '1984-09-17', 'john.doe@johndoe.com')
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" LIMIT 1[0m
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 980190962]]
+  [1m[36mFixture Delete (34.4ms)[0m  [1mDELETE FROM "users"[0m
+  [1m[35mFixture Insert (0.1ms)[0m  INSERT INTO "users" ("name", "created_at", "updated_at", "id", "locked_at", "born_on", "email") VALUES ('John Doe', '2011-12-26 08:52:04', '2011-12-26 08:52:04', 980190962, '2011-06-13 22:01:13', '1984-09-17', 'john.doe@johndoe.com')
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" LIMIT 1[0m
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 980190962]]
+  [1m[36mFixture Delete (0.2ms)[0m  [1mDELETE FROM "users"[0m
+  [1m[35mFixture Insert (0.1ms)[0m  INSERT INTO "users" ("name", "created_at", "updated_at", "id", "locked_at", "born_on", "email") VALUES ('John Doe', '2011-12-26 08:52:47', '2011-12-26 08:52:47', 980190962, '2011-06-13 22:01:13', '1984-09-17', 'john.doe@johndoe.com')
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" LIMIT 1[0m
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 980190962]]
+  [1m[36mFixture Delete (0.2ms)[0m  [1mDELETE FROM "users"[0m
+  [1m[35mFixture Insert (0.1ms)[0m  INSERT INTO "users" ("name", "created_at", "updated_at", "id", "locked_at", "born_on", "email") VALUES ('John Doe', '2011-12-26 08:53:51', '2011-12-26 08:53:51', 980190962, '2011-06-13 22:01:13', '1984-09-17', 'john.doe@johndoe.com')
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" LIMIT 1[0m
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 980190962]]
+  [1m[36mFixture Delete (0.2ms)[0m  [1mDELETE FROM "users"[0m
+  [1m[35mFixture Insert (0.1ms)[0m  INSERT INTO "users" ("name", "created_at", "updated_at", "id", "locked_at", "born_on", "email") VALUES ('John Doe', '2011-12-26 08:54:22', '2011-12-26 08:54:22', 980190962, '2011-06-13 22:01:13', '1984-09-17', 'john.doe@johndoe.com')
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" LIMIT 1[0m
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 980190962]]
+  [1m[36mFixture Delete (0.6ms)[0m  [1mDELETE FROM "users"[0m
+  [1m[35mFixture Insert (0.1ms)[0m  INSERT INTO "users" ("name", "created_at", "updated_at", "id", "locked_at", "born_on", "email") VALUES ('John Doe', '2011-12-26 08:55:08', '2011-12-26 08:55:08', 980190962, '2011-06-13 22:01:13', '1984-09-17', 'john.doe@johndoe.com')
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" LIMIT 1[0m
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 980190962]]
+  [1m[36mFixture Delete (0.2ms)[0m  [1mDELETE FROM "users"[0m
+  [1m[35mFixture Insert (0.1ms)[0m  INSERT INTO "users" ("name", "created_at", "updated_at", "id", "locked_at", "born_on", "email") VALUES ('John Doe', '2011-12-26 08:55:59', '2011-12-26 08:55:59', 980190962, '2011-06-13 22:01:13', '1984-09-17', 'john.doe@johndoe.com')
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" LIMIT 1[0m
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 980190962]]
+  [1m[36mUser Load (0.0ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 980190962]]
+  [1m[36mFixture Delete (0.2ms)[0m  [1mDELETE FROM "users"[0m
+  [1m[35mFixture Insert (0.1ms)[0m  INSERT INTO "users" ("name", "created_at", "updated_at", "id", "locked_at", "born_on", "email") VALUES ('John Doe', '2011-12-26 08:56:31', '2011-12-26 08:56:31', 980190962, '2011-06-13 22:01:13', '1984-09-17', 'john.doe@johndoe.com')
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" LIMIT 1[0m
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 980190962]]
+  [1m[36mUser Load (0.0ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 980190962]]
+  [1m[36mFixture Delete (0.2ms)[0m  [1mDELETE FROM "users"[0m
+  [1m[35mFixture Insert (0.1ms)[0m  INSERT INTO "users" ("name", "created_at", "updated_at", "id", "locked_at", "born_on", "email") VALUES ('John Doe', '2011-12-26 08:57:20', '2011-12-26 08:57:20', 980190962, '2011-06-13 22:01:13', '1984-09-17', 'john.doe@johndoe.com')
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" LIMIT 1[0m
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 980190962]]
+  [1m[36mUser Load (0.0ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 980190962]]
+  [1m[35mUser Load (0.0ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 980190962]]
+  [1m[36mFixture Delete (0.2ms)[0m  [1mDELETE FROM "users"[0m
+  [1m[35mFixture Insert (0.1ms)[0m  INSERT INTO "users" ("name", "created_at", "updated_at", "id", "locked_at", "born_on", "email") VALUES ('John Doe', '2011-12-26 09:00:26', '2011-12-26 09:00:26', 980190962, '2011-06-13 22:01:13', '1984-09-17', 'john.doe@johndoe.com')
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" LIMIT 1[0m
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 980190962]]
+  [1m[36mUser Load (0.0ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 980190962]]
+  [1m[35mUser Load (0.0ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 980190962]]
+  [1m[36mFixture Delete (0.2ms)[0m  [1mDELETE FROM "users"[0m
+  [1m[35mFixture Insert (0.1ms)[0m  INSERT INTO "users" ("name", "created_at", "updated_at", "id", "locked_at", "born_on", "email") VALUES ('John Doe', '2011-12-26 09:00:59', '2011-12-26 09:00:59', 980190962, '2011-06-13 22:01:13', '1984-09-17', 'john.doe@johndoe.com')
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" LIMIT 1[0m
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 980190962]]
+  [1m[36mUser Load (0.0ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 980190962]]
+  [1m[35mUser Load (0.0ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 980190962]]

@@ -7,7 +7,7 @@ module Resque::Plugins::Async::Method
     my_klass       = Resque::Plugins::Async::Worker
     my_klass.queue = opts[:queue] ||
                      send(:class).name.underscore.pluralize
-    if self.methods(false).include?(method.to_s)
+    if send(:class).name == "Class"
       # this means that the method called is a class method
       id = 0
     else
@@ -53,13 +53,12 @@ module Resque::Plugins::Async::Method
 
     def async_method(method, opts={})
       #we clean the method, please see the documentation above
-      
+
       clean_method = method.to_s.gsub("!","")
       define_method("#{clean_method}_with_enqueue#{'!' if clean_method != method.to_s}") do |*args|
         enqueue(method, opts, *args)
       end
-      ali
-      as_method_chain method, :enqueue
+      alias_method_chain method, :enqueue
     end
   end
 
