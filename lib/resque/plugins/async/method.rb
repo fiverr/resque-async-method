@@ -93,14 +93,14 @@ module Resque::Plugins::Async::Method
       alias_method_chain method, :enqueue
     end
 
-    def delayed_async_method(method, time, opts)
+    def delayed_async_method(method, time, opts = {})
+      if Rails.env.test?
+        async_method(method, opts)
+        return
+      end
       clean_method = method.to_s.gsub("!","")
       define_method("#{clean_method}_with_delayed_enqueue#{'!' if clean_method != method.to_s}") do |*args|
-        if Rails.env.test?
-          enqueue(method, opts, *args)
-        else
-          enqueue_at(time, method, opts, *args)
-        end
+        enqueue_at(time, method, opts, *args)
       end
       alias_method_chain method, :delayed_enqueue
     end
