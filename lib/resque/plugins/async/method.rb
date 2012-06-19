@@ -56,23 +56,26 @@ module Resque::Plugins::Async::Method
 
   end
 
-  DELAYED_SET_NAME = "resque_delayed_jobs"
+  def delayed_set_name
+    "resque_delayed_jobs"
+  end
 
   def enqueue_at(time, method, opts, *args)
     job = enqueue_params(method, opts, *args)
-    Resque.redis.zadd DELAYED_SET_NAME, (Time.now+time).to_i, Marshal.dump(job)
+    Resque.redis.zadd delayed_set_name, (Time.now+time).to_i, Marshal.dump(job)
   end
 
   def enqueue_ready_jobs
     redis = Resque.redis
     #we do this in multi to avoid stuff entering in the middle
-    redis.multi do
-      @jobs = redis.zrangebyscore DELAYED_SET_NAME, "-inf", Time.now.to_i
-      redis.zremrangebyscore DELAYED_SET_NAME, "-inf", Time.now.to_i
+    jobs = redis.multi do
+      redis.zrangebyscore delayed_set_name, "-inf", Time.now.to_i
+      redis.zremrangebyscore delayed_set_name, "-inf", Time.now.to_i
     end
 
-    @jobs.each do |job|
-      Resque.enqueue Marshal.load(job)
+    #jobs.first will return the output from the redis.zrangebyscore call, which is an array
+    jobs.first.each do |job|
+      Resque.enqueue *(Marshal.load(job))
     end
   end
   
