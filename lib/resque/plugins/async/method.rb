@@ -61,7 +61,9 @@ module Resque::Plugins::Async::Method
   end
 
   def enqueue_at(time, method, opts, *args)
-    job = enqueue_params(method, opts, *args)
+    clean_method = method.to_s.gsub("!","")
+    sync_method_name = "#{clean_method}_without_delayed_enqueue#{'!' if clean_method != method.to_s}"
+    job = enqueue_params(method, opts.merge({:sync_method_name => sync_method_name}), *args)
     Resque.redis.zadd delayed_set_name, (Time.now+time).to_i, Marshal.dump(job)
   end
 
@@ -94,7 +96,11 @@ module Resque::Plugins::Async::Method
     def delayed_async_method(method, time, opts)
       clean_method = method.to_s.gsub("!","")
       define_method("#{clean_method}_with_delayed_enqueue#{'!' if clean_method != method.to_s}") do |*args|
-        enqueue_at(time, method, opts, *args)
+        if Rails.env.test?
+          enqueue(method, opts, *args)
+        else
+          enqueue_at(time, method, opts, *args)
+        end
       end
       alias_method_chain method, :delayed_enqueue
     end
