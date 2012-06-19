@@ -31,7 +31,7 @@ module Resque::Plugins::Async::Method
     # and then check that it did have a ! in the end, finishing the new method name with a bang.
     
     clean_method = method.to_s.gsub("!","")
-    method_without_enqueue = "#{clean_method}_without_enqueue#{'!' if clean_method != method.to_s}"
+    method_without_enqueue = opts[:sync_method_name] || "#{clean_method}_without_enqueue#{'!' if clean_method != method.to_s}"
     
 
     # resque's stupid way of handling ActiveRecord parameters turns the parameter into a hash
@@ -56,9 +56,24 @@ module Resque::Plugins::Async::Method
 
   end
 
+  DELAYED_SET_NAME = "resque_delayed_jobs"
+
   def enqueue_at(time, method, opts, *args)
     job = enqueue_params(method, opts, *args)
-    Resque.redis.zadd "resque_delayed_jobs", (Time.now+time).to_i, Marshall.dump(job)
+    Resque.redis.zadd DELAYED_SET_NAME, (Time.now+time).to_i, Marshall.dump(job)
+  end
+
+  def enqueue_ready_jobs
+    redis = Resque.redis
+    #we do this in multi to avoid stuff entering in the middle
+    redis.multi do
+      @jobs = redis.zrangebyscore DELAYED_SET_NAME, "-inf", Time.now.to_i
+      redis.zremrangebyscore DELAYED_SET_NAME, "-inf", Time.now.to_i
+    end
+
+    @jobs.each do |job|
+      Resque.enqueue Marshall.load(job)
+    end
   end
   
   module ClassMethods
