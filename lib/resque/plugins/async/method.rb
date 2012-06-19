@@ -60,7 +60,7 @@ module Resque::Plugins::Async::Method
 
   def enqueue_at(time, method, opts, *args)
     job = enqueue_params(method, opts, *args)
-    Resque.redis.zadd DELAYED_SET_NAME, (Time.now+time).to_i, Marshall.dump(job)
+    Resque.redis.zadd DELAYED_SET_NAME, (Time.now+time).to_i, Marshal.dump(job)
   end
 
   def enqueue_ready_jobs
@@ -72,7 +72,7 @@ module Resque::Plugins::Async::Method
     end
 
     @jobs.each do |job|
-      Resque.enqueue Marshall.load(job)
+      Resque.enqueue Marshal.load(job)
     end
   end
   
