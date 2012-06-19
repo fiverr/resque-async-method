@@ -4,6 +4,17 @@ module Resque::Plugins::Async::Method
   extend ActiveSupport::Concern
 
   def enqueue(method, opts, *args)
+    
+
+    # The enqueu uses the Async plugin class, which allows setting the queue name in the
+    # async_method call, a-la delayed_job
+
+    Resque.enqueue(
+      *enqueue_params(method, opts, *args)
+    )
+  end
+
+  def enqueue_params(method, opts, *args)
     my_klass       = Resque::Plugins::Async::Worker
     my_klass.queue = opts[:queue] ||
                      send(:class).name.underscore.pluralize
@@ -37,16 +48,17 @@ module Resque::Plugins::Async::Method
       end
     end
 
-    # The enqueu uses the Async plugin class, which allows setting the queue name in the
-    # async_method call, a-la delayed_job
-
-    Resque.enqueue(
-      my_klass,
+    return my_klass,
       send(:class).name == "Class" ? send(:name) : send(:class).name,
       id,
       :"#{method_without_enqueue}",
       *args
-    )
+
+  end
+
+  def enqueue_at(time, method, opts, *args)
+    job = enqueue_params(method, opts, *args)
+    Resque.redis.zadd "resque_delayed_jobs", (Time.now+time).to_i, Marshall.dump(job)
   end
   
   module ClassMethods
@@ -60,6 +72,15 @@ module Resque::Plugins::Async::Method
       end
       alias_method_chain method, :enqueue
     end
+
+    def delayed_async_method(method, time, opts)
+      clean_method = method.to_s.gsub("!","")
+      define_method("#{clean_method}_with_delayed_enqueue#{'!' if clean_method != method.to_s}") do |*args|
+        enqueue_at(time, method, opts, *args)
+      end
+      alias_method_chain method, :delayed_enqueue
+    end
+
   end
 
 end
