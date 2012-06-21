@@ -9,7 +9,6 @@ Gem::Specification.new do |s|
   s.homepage = "http://github.com/nragaz/resque-async-method"
   
   s.add_dependency 'resque'
-  s.add_dependency 'activesupport'
   
   s.add_development_dependency 'sqlite3'
 end

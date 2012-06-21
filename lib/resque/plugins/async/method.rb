@@ -1,7 +1,10 @@
 require 'resque/plugins/async/worker'
 
 module Resque::Plugins::Async::Method
-  extend ActiveSupport::Concern
+  
+  def self.included(base)
+    base.send :extend, ClassMethods
+  end
 
   def enqueue(method, opts, *args)
     
@@ -107,4 +110,8 @@ module Resque::Plugins::Async::Method
 
   end
 
+end
+
+class ActiveRecord::Base
+  include Resque::Plugins::Async::Method
 end
