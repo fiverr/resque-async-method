@@ -15,6 +15,7 @@ class Resque::Plugins::Async::Worker
   # and turn them back to AR records before using them.
 
   def self.perform(klass, *args)
+    
     id = args.shift
     # the first argument is always the method name.
 
@@ -29,5 +30,5 @@ class Resque::Plugins::Async::Worker
     end      
   end
 
-  
+
 end
