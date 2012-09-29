@@ -15,17 +15,21 @@ class Resque::Plugins::Async::Worker
   # and turn them back to AR records before using them.
 
   def self.perform(klass, *args)
-    id = args.shift
-    # the first argument is always the method name.
+    begin
+      id = args.shift
+      # the first argument is always the method name.
 
-    arguments = *args.map { |o| o.is_a?(Hash) && o.has_key?("class_name") && o.has_key?("id") ? o["class_name"].constantize.find(o["id"]) : o }
-    arguments = arguments.to_a
-    if id == 0
-      # id = 0 is the de-facto way fo saying "This is a class method"
-      klass.constantize.send(arguments.shift, *arguments)
-    else
-      # instance method
-      klass.constantize.find(id).send(arguments.shift, *arguments)
+      arguments = *args.map { |o| o.is_a?(Hash) && o.has_key?("class_name") && o.has_key?("id") ? o["class_name"].constantize.find(o["id"]) : o }
+      arguments = arguments.to_a
+      if id == 0
+        # id = 0 is the de-facto way fo saying "This is a class method"
+        klass.constantize.send(arguments.shift, *arguments)
+      else
+        # instance method
+        klass.constantize.find(id).send(arguments.shift, *arguments)
+      end      
+    rescue Exception => e
+      
     end
   end
 end
